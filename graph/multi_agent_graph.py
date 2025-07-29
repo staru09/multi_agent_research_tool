@@ -50,10 +50,8 @@ class MultiAgentGraph:
         """
         last_message = state["messages"][-1]
         
-        # Check if last message is from supervisor with tool calls
         if isinstance(last_message, AIMessage) and last_message.tool_calls:
             tool_name = last_message.tool_calls[0]["name"]
-            # Extract agent name from tool name (transfer_to_<agent>)
             return tool_name.replace("transfer_to_", "")
         
         return "end"
